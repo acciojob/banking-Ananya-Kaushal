@@ -43,50 +43,27 @@ public class BankAccount {
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
         if (digits <= 0 || sum < 0 || sum > digits * 9) {
-            throw new RuntimeException("Account Number cannot be generated");
+            throw new RuntimeException("Account Number can not be generated");
         }
-
-        int[] accountNumber = new int[digits];
+        String accountNumber = "";
         int remainingSum = sum;
 
         // Generate the account number digits
         for (int i = 0; i < digits; i++) {
             if (remainingSum >= 9) {
-                accountNumber[i] = 9;
+                accountNumber =accountNumber+ String.valueOf(9);
                 remainingSum -= 9;
             } else {
-                accountNumber[i] = remainingSum;
+                accountNumber=accountNumber+ String.valueOf(remainingSum);
                 remainingSum = 0;
             }
         }
 
         // If there's still a remaining sum, it's not possible to generate the account number
         if (remainingSum > 0) {
-            throw new RuntimeException("Account Number cannot be generated");
+            throw new RuntimeException("Account Number can not be generated");
         }
-
-        // Convert the account number digits to an integer
-        int generatedAccountNumber = 0;
-        for (int i = 0; i < digits; i++) {
-            generatedAccountNumber = generatedAccountNumber * 10 + accountNumber[i];
-        }
-
-        return String.valueOf(generatedAccountNumber);
-        /*try {
-            int accountNo = 0;
-            while (sum > 0 && digits > 1) {
-                int r = (int) (Math.random() * 10);
-                digits--;
-                sum -= r;
-                accountNo = (accountNo * 10) + r;
-            }
-            accountNo = (accountNo * 10) + sum;
-            return ("accountNo is " + accountNo);
-
-        }catch (Exception e)
-        {
-            return  "Account Number can not be generated";
-        }*/
+        return accountNumber;
     }
 
     public void deposit(double amount) {
