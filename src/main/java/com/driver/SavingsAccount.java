@@ -38,7 +38,8 @@ public class SavingsAccount extends BankAccount{
         } else if (amount > getBalance()) {
             throw new Exception("Insufficient Balance");
         }
-        setBalance(getBalance()-amount);
+        //setBalance(getBalance()-amount);
+        super.withdraw(amount);
     }
 
     public double getSimpleInterest(int years){
